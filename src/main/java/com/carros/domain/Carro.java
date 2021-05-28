@@ -1,8 +1,22 @@
 package com.carros.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Carro {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	private String tipo;
+
+	public Carro(){
+		 
+	}
 	
 	public Carro(Long id, String nome) {
 		this.id = id;
@@ -25,7 +39,11 @@ public class Carro {
 		this.nome = nome;
 	}
 	
-	
-	
-	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}	
 }
