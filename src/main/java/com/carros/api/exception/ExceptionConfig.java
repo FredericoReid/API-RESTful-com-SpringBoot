@@ -4,6 +4,7 @@ import net.bytebuddy.pool.TypePool;
 
 import java.io.Serializable;
 
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,13 @@ public class ExceptionConfig extends ResponseEntityExceptionHandler {
     })
     public ResponseEntity errorBadRequest(Exception ex) {
         return ResponseEntity.badRequest().build();
+    }
+    
+    @ExceptionHandler({
+    	AccessDeniedException.class
+    })
+    public ResponseEntity accessDenied() {
+    	return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new Error("Acesso negado"));
     }
 
     @Override
